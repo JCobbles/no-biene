@@ -30,10 +30,8 @@ function CauseCreationController($scope, $http) {
 }
 
 function ViewCauseController($scope, $http, $routeParams) {
-    console.log('/api/causes/find/' + $routeParams.id);
     $http.get('/api/causes/find/' + $routeParams.id)
         .success(function(cause) {
-            console.log(cause);
             $scope.cause = cause;
         })
         .error(function(error) {

@@ -81,6 +81,7 @@ app.get('/populate', function(req, res) {
     }, function(err, cause) {console.log(err);});
     Cause.create({
         title: "Support needed for 10 child refugees",
+        photoURI: "https://www.syriacharity.org/images/photos/home_1463462726.jpg",
         description: "Aenean ullamcorper vestibulum tortor. Duis ornare vitae justo sed semper. Ut est sapien, interdum ornare urna nec, posuere elementum nunc. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae.",
         details : "Cras iaculis mi eget pharetra mollis. Vivamus vestibulum purus libero, ut sodales justo feugiat at. Vestibulum sed maximus est, ac pellentesque augue. Mauris iaculis dignissim consectetur. Mauris gravida eget neque ac condimentum. Maecenas sodales ipsum tortor, vitae lobortis diam gravida ut. Sed ipsum justo, vehicula vitae ullamcorper id, tempor ut dolor. Integer ac risus ligula. In dictum urna nibh, cursus cursus ante tristique id. Sed lobortis mauris id ante venenatis lacinia. Proin suscipit purus ut quam mollis, eu tincidunt velit consequat.",
         date : new Date(),
