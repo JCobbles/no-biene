@@ -24,7 +24,8 @@ function HomepageController($scope, $http) {
 function CauseCreationController($scope, $http) {
     $scope.create = function(cause) {
         $http.post('/api/causes/create', { cause: cause }, function(data) {
-            console.log(data);
+            console.log("Success");
+            $location.path('#/view-cause/' + data.cause._id);
         });
     };
 }
