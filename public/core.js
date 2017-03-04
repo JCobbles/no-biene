@@ -4,7 +4,7 @@ function mainController($scope, $http) {
     $scope.formData = {};
 
     console.log("test");
-    $http.post('/api/users/create', { username: 'test', password: 'test' })
+    $http.get('/api/causes/list')
         .success(function(data) {
             $scope.todos = data;
             console.log(data);

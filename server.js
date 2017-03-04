@@ -9,8 +9,8 @@ var methodOverride = require('method-override');   // simulate DELETE and PUT (e
 // configuration 
 
 var productionServer = 'mongodb://tester:password@nobuene-886.mongo.dbs.appsdeck.eu:31179/nobuene-886'
-var localServer = '';
-mongoose.connect(productionServer);     // connect to mongoDB database on modulus.io
+var localServer = 'mongodb://localhost:27017/myproject';
+mongoose.connect(localServer);     // connect to mongoDB database on modulus.io
 
 app.use(express.static(__dirname + '/public'));                 // set the static files location /public/img will be /img for users
 app.use(morgan('dev'));                                         // log every request to the console
@@ -33,14 +33,26 @@ var Cause = mongoose.model('Cause', {
 
 // routes
 
-app.get('/api/users/find/:user_id', function(req, res) {
+app.get('/api/causes/list', function(req, res) {
 
-    User.findOne({ 'username': req.params.username }, 'username causes', function(err, users) {
+    Cause.find(function(err, causes) {
 
         if (err) {
             res.send(err)
         } else {
-            res.json(todos);
+            res.json(causes);
+        }
+    });
+});
+
+app.get('/api/causes/find/:user_id', function(req, res) {
+
+    Cause.findOne({ 'id': req.params.causeId }, function(err, causes) {
+
+        if (err) {
+            res.send(err)
+        } else {
+            res.json(causes);
         }
     });
 });
