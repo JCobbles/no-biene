@@ -1,0 +1,32 @@
+<div class="container">
+
+    <div class="jumbotron text-center">
+        <h1>Transparent, Direct, Charity</h1>
+    </div>
+
+    <div id="todo-list" class="row">
+        <div class="col-sm-4 col-sm-offset-4">
+
+            <div class="checkbox" ng-repeat="cause in causes">
+                <p>
+                    {{ cause.description }}
+                </p>
+            </div>
+
+        </div>
+    </div>
+
+    <div id="todo-form" class="row">
+        <div class="col-sm-8 col-sm-offset-2 text-center">
+            <form>
+                <div class="form-group">
+
+                    <input type="text" class="form-control input-lg text-center" placeholder="username" ng-model="formData.username">
+                </div>
+
+                <button type="submit" class="btn btn-primary btn-lg" ng-click="createTodo()">Create</button>
+            </form>
+        </div>
+    </div>
+
+</div>
