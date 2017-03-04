@@ -23,10 +23,9 @@
         <script src="/seeddb.js"></script>
 
         <style>
-            body {
-                padding: 0;
-            }
+            body { padding: 0; }
             ng-view > div { padding-top: 80px; }
+            #map { height: 100%; }
         </style>
     </head>
 
@@ -59,10 +58,10 @@
     <div class="mdl-layout__drawer">
         <span class="mdl-layout-title">TITLE Area</span>
         <nav class="mdl-navigation">
-            <a class="mdl-navigation__link mdl-typography--text-uppercase" href="">Home</a>
-            <a class="mdl-navigation__link mdl-typography--text-uppercase" href="">Features</a>
-            <a class="mdl-navigation__link mdl-typography--text-uppercase" href="">Pricing</a>
-            <a class="mdl-navigation__link mdl-typography--text-uppercase" href="">Contact Us</a>
+            <a class="mdl-navigation__link mdl-typography--text-uppercase" href="#/">Home</a>
+                <a class="mdl-navigation__link mdl-typography--text-uppercase" href="#/">Browse Causes</a>
+                <a class="mdl-navigation__link mdl-typography--text-uppercase" href="#/create-cause">Create a Cause</a>
+                <a class="mdl-navigation__link mdl-typography--text-uppercase" href="#/">About Us</a>
             <a class="mdl-navigation__link mdl-typography--text-uppercase" href="">Sign In</a>
             <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-typography--text-uppercase mdl-button--accent">
                 Sign Up
@@ -89,6 +88,10 @@
                 .when("/view-cause/:id", {
                     templateUrl: "view-cause.html",
                     controller: 'ViewCauseController'
+                })
+                .when("/populate", {
+                    templateUrl: "populate.html",
+                    controller: "PopulateController"
                 });
             });
         </script>
