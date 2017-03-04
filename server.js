@@ -103,7 +103,7 @@ app.get('/api/causes/list', function(req, res) {
 
 app.get('/api/causes/find/:cause_id', function(req, res) {
 
-    Cause.findOne({ 'id': req.params.cause_id }, function(err, cause) {
+    Cause.findOne({ '_id': req.params.cause_id }, function(err, cause) {
 
         if (err) {
             res.send(err)

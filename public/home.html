@@ -8,9 +8,9 @@
         <div class="col-sm-6">
 
             <div ng-repeat="cause in causes">
-                <p>
-                    {{ cause.description }}
-                </p>
+                <a href="#/view-cause/{{cause._id}}">
+                    {{ cause.title }}
+                </a>
             </div>
 
         </div>
