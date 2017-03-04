@@ -24,7 +24,7 @@ app.use(methodOverride());
 var Cause = mongoose.model('Cause', {
     description: String,
     date: Date,
-})
+});
 
 // routes
 

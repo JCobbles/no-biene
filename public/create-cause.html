@@ -1,7 +1,14 @@
-<div class="container">
+<div ng-controller="CauseCreationController">
 
     <div class="jumbotron text-center">
         <h2>Create a cause</h2>
     </div>
 
+    <form novalidate class="simple-form">
+        <label>Title: <input type="text" ng-model="cause.title" /></label><br />
+        <label>Description: <input type="text" ng-model="cause.description" /></label><br />
+        <label>Detailed description: <input type="text" ng-model="cause.detailedDescription" /></label><br />
+
+        <input type="submit" ng-click="create(cause)" value="Save" />
+    </form>
 </div>

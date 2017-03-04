@@ -1,9 +1,9 @@
 {
-  "name"         : "node-todo",
+  "name"         : "transparent-charity",
   "version"      : "0.0.0",
-  "description"  : "Simple todo application.",
+  "description"  : "Transparent charity.",
   "main"         : "server.js",
-  "author"       : "Scotch",
+  "author"       : "Biene",
   "dependencies" : {
     "body-parser"    : "^1.4.3",
     "express"        : "^4.13.4",
