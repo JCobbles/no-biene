@@ -30,7 +30,7 @@ var Cause = mongoose.model('Cause', {
     date: Date,
     contractors: [{ name: String, price: Number, details: String, votes: { type: Number, default: 0 }, specificFundsPledged: { type: Number, default: 0 } }],
     currentFundsTotal: { type: Number, default: 0 },
-    photoURI: { type: String, default: '' }
+    photoURI: { type: String, default: 'http://www.chris-cancercommunity.com/wp-content/uploads/Things-to-Consider-before-Deciding-Where-to-Donate.jpg' }
 });
 
 var User = mongoose.model('User', {
@@ -145,16 +145,20 @@ app.get('/api/pledge/:amount/:cause_id', function(req, res) {
 
 app.post('/api/causes/create', function(req, res) { // create cause
     console.log(req.body.cause);
+    var { cause } = req.body;
     Cause.create({
-        description : req.body.cause.description,
-        date : new Date(),
+        title: cause.title,
+        description: cause.description,
+        details: cause.detailedDescription,
+        date: new Date(),
+        latitude: 32.676947, longitude: 44.948068
     }, function(err, cause) {
         if (err) {
             console.log(err);
-            res.send(err);
+            res.json(err);
         } else {
-            console.log(req.body.cause);
-            res.json({ success: true, data: cause });
+            console.log(cause);
+            res.json({ success: true, cause });
         }
     });
 });

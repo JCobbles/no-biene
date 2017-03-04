@@ -6,7 +6,7 @@ angular.module('myApp')
     .controller('LoginController', LoginController);
 
 HomepageController.$inject = ['$scope', '$http'];
-CauseCreationController.$inject = ['$scope', '$http'];
+CauseCreationController.$inject = ['$scope', '$http', '$location'];
 
 function HomepageController($scope, $http) {
     $scope.formData = {};
@@ -21,12 +21,13 @@ function HomepageController($scope, $http) {
         });
 }
 
-function CauseCreationController($scope, $http) {
+function CauseCreationController($scope, $http, $location) {
     $scope.create = function(cause) {
-        $http.post('/api/causes/create', { cause: cause }, function(data) {
-            console.log("Success");
-            $location.path('#/view-cause/' + data.cause._id);
-        });
+        $http.post('/api/causes/create', { cause: cause })
+            .success(function(data) {
+                console.log(data.cause);
+                $location.url('view-cause/' + data.cause._id);
+            });
     };
 }
 
