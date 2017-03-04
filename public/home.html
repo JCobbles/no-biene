@@ -3,12 +3,13 @@
     <h2>Transparent, Direct, Charity</h2>
 
     <div id="todo-list" class="row">
-        <div class="col-sm-4 col-sm-offset-4">
+        <div class="col-sm-4">
 
-            <div ng-repeat="cause in causes">
-                <p>
-                    {{ cause.description }}
-                </p>
+            <div ng-repeat="cause in causes" class="text-left">
+                    <div class="col-sm-4">
+                        <h4>{{ cause.description }}</h4><br>
+                        Date: {{ cause.date }}
+                    </div>
             </div>
 
         </div>
@@ -28,4 +29,3 @@
     </div>
 
 </div>
-
