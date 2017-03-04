@@ -8,7 +8,7 @@
         <label>Title: <input type="text" ng-model="cause.title" /></label><br />
         <label>Description: <input type="text" ng-model="cause.description" /></label><br />
         <label>Detailed description: <input type="text" ng-model="cause.detailedDescription" /></label><br />
-
+        <input id="upload-input" type="file" ng-model="cause.uploads[]" multiple="multiple"></br>
         <input type="submit" ng-click="create(cause)" value="Save" />
     </form>
 </div>
