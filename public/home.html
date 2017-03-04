@@ -7,7 +7,7 @@
     <div id="todo-list" class="row">
         <div class="col-sm-4 col-sm-offset-4">
 
-            <div class="checkbox" ng-repeat="cause in causes">
+            <div ng-repeat="cause in causes">
                 <p>
                     {{ cause.description }}
                 </p>
@@ -24,7 +24,7 @@
                     <input type="text" class="form-control input-lg text-center" placeholder="username" ng-model="formData.username">
                 </div>
 
-                <button type="submit" class="btn btn-primary btn-lg" ng-click="createTodo()">Create</button>
+                <button type="submit" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent" ng-click="createTodo()">Create</button>
             </form>
         </div>
     </div>

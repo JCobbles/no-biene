@@ -3,6 +3,7 @@ angular.module('myApp')
     .controller('CauseCreationController', CauseCreationController);
 
 HomepageController.$inject = ['$scope', '$http'];
+CauseCreationController.$inject = ['$scope', '$http'];
 
 function HomepageController($scope, $http) {
     $scope.formData = {};
@@ -17,8 +18,17 @@ function HomepageController($scope, $http) {
         });
 }
 
-function CauseCreationController($scope) {
+function CauseCreationController($scope, $http) {
     $scope.create = function(cause) {
-
+        $http.post('/api/causes/create', { cause: cause }, function(data) {
+            console.log(data);
+        });
     };
+}
+
+function ViewCauseController($scope, $http, $routeParams) {
+    $http.get('/api/causes/find/' + $routeParams.id, function(cause) {
+        console.log(cause);
+        $scope.cause = cause;
+    });
 }
