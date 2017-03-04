@@ -7,7 +7,8 @@
     <div id="todo-list" class="row">
         <div class="col-sm-6">
 
-            <div ng-repeat="cause in causes">
+
+            <div ng-repeat="cause in causes" class="col-md-6">
                 <a href="#/view-cause/{{cause._id}}">
                     {{ cause.title }}
                 </a>
@@ -60,12 +61,12 @@ function initMap() {
 
     // Add a marker clusterer to manage the markers.
     var markerCluster = new MarkerClusterer(map, markers, { imagePath: 'https://raw.githubusercontent.com/googlemaps/v3-utility-library/master/markerclustererplus/images/m' });
-   
+
 }
 
 
 var locations = [
-    
+
     {lat: -37.750000, lng: 145.116667},
     {lat: -37.759859, lng: 145.128708},
     {lat: -37.765015, lng: 145.133858},
