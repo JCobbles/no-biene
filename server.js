@@ -184,15 +184,5 @@ app.get('*', function(req, res) {
     res.sendfile('./public/index.html');
 });
 
-for (var i = 0; i<4; i++) {
-    Cause.create({
-            title: "Fund the repair of local hospital",
-            description: "Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Morbi eu dapibus enim. Phasellus tincidunt purus metus, eget ornare dui sagittis vulputate.",
-            details : "Morbi aliquam lorem ante, a mattis tortor ornare vitae. Maecenas mollis elit leo, vel accumsan enim mollis venenatis. Donec pulvinar, tellus id tempor fermentum, erat metus tincidunt nisi, eu aliquet dui est sit amet odio. Aliquam in cursus ante, vitae vehicula metus. Nunc vel mattis nulla. Mauris quis vehicula magna. Nam tincidunt, dolor ac egestas bibendum, nulla mauris accumsan nisl, a imperdiet purus tellus ut enim.",
-            date : new Date(),
-            latitude: 39.986732, longitude: 34.814906
-        }, function(err, cause) {});
-
-}
 app.listen(process.env.PORT || 8080);
 console.log("App listening on port " + (process.env.PORT || 8080));
