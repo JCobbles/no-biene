@@ -113,6 +113,20 @@ app.get('/api/causes/find/:cause_id', function(req, res) {
     });
 });
 
+app.get('/api/pledge/:amount/:cause_id', function(req, res) {
+    Cause.findOne({ '_id': req.params.cause_id }, function(err, cause) {
+        if (err) {
+            res.send(err)
+        } else {
+            //update the cause with the new monies req.params.amount
+            cause.currentFundsTotal += req.params.amount;
+            cause.save();
+            res.json(cause);
+
+        }
+	});
+});
+
 app.post('/api/causes/create', function(req, res) { // create cause
     console.log(req.body.cause);
     Cause.create({
