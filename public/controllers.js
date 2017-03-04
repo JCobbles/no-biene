@@ -41,6 +41,18 @@ function ViewCauseController($scope, $http, $routeParams) {
         console.log(JSON.parse(window.localStorage.getItem("user")));
     $scope.normalUser = window.localStorage.getItem("user") != undefined && 
         JSON.parse(window.localStorage.getItem("user")).type == "normal";
+
+    $scope.donate = function(amount) {
+        console.log('/api/pledge/' + amount + '/' + $scope.cause._id);
+        $http.get('/api/pledge/' + amount + '/' + $scope.cause._id)
+            .success(function(cause) {
+                console.log(cause);
+                $scope.cause = cause;
+            })
+            .error(function(error) {
+                console.log(error);
+            });
+    };
 }
 
 function PopulateController($scope, $http) {
