@@ -4,11 +4,43 @@
         <h2>Create a cause</h2>
     </div>
 
-    <form novalidate class="simple-form">
-        <label>Title: <input type="text" ng-model="cause.title" /></label><br />
-        <label>Description: <input type="text" ng-model="cause.description" /></label><br />
-        <label>Detailed description: <input type="text" ng-model="cause.detailedDescription" /></label><br />
-        <input id="upload-input" type="file" ng-model="cause.uploads[]" multiple="multiple"></br>
-        <input type="submit" ng-click="create(cause)" value="Save" />
-    </form>
+    <div class="mdl-grid">
+    <div class="mdl-layout-spacer"></div>
+        <div class="mdl-cell mdl-cell--4-col">
+            <div class="text-center">
+                <form style="display: block;" novalidate>
+                    <!-- <label>Title: <input type="text" ng-model="cause.title" /></label><br /> -->
+                    <div style="display: block; width: 100%;" class="mdl-textfield mdl-js-textfield">
+                        <input class="mdl-textfield__input" type="text" id="title" ng-model="cause.title">
+                        <label class="mdl-textfield__label" for="title">Title</label>
+                    </div>
+
+                    <div style="display: block; width: 100%;" class="mdl-textfield mdl-js-textfield">
+                        <textarea class="mdl-textfield__input" type="text" rows= "3" id="description" ng-model="cause.description"></textarea>
+                        <label class="mdl-textfield__label" for="description" >Description</label>
+                    </div>
+
+                    <div style="display: block; width: 100%;" class="mdl-textfield mdl-js-textfield">
+                        <textarea class="mdl-textfield__input" type="text" rows= "3" id="details" ng-model="cause.detailedDescription"></textarea>
+                        <label class="mdl-textfield__label" for="details">Detailed descriptions</label>
+                    </div>
+
+                    <!--<input id="upload-input" type="file" ng-model="cause.uploads[]" multiple="multiple" class="mdl-button mdl-js-button mdl-button--raised"></br> -->
+
+                    <button class="mdl-button mdl-js-button mdl-button--raised">Upload Photo</button>
+
+                    <input type="submit" ng-click="create(cause)" value="Save" class="mdl-button mdl-js-button mdl-button--raised"/>
+                </form>
+            </div>
+        </div>
+    <div class="mdl-layout-spacer"></div>
+    </div>
+
+
+
+    <script>
+    if(!(typeof(componentHandler) == 'undefined')){
+            componentHandler.upgradeAllRegistered();
+        };
+    </script>
 </div>
