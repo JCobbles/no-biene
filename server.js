@@ -22,8 +22,12 @@ app.use(methodOverride());
 var User = mongoose.model('User', {
     username : String,
     password : String,
-    causes: [{ description: String, date: Date }],
+    causes: [{ id: String }],
 });
+var Cause = mongoose.model('Cause', {
+    description: String,
+    date: Date,
+})
 
 // routes
 
@@ -37,6 +41,10 @@ app.get('/api/users/find/:user_id', function(req, res) {
             res.json(todos);
         }
     });
+});
+
+app.get('*', function(req, res) {
+    res.sendfile('./public/index.html');
 });
 
 // create user
