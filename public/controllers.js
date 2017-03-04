@@ -25,7 +25,6 @@ function CauseCreationController($scope, $http) {
     $scope.create = function(cause) {
         $http.post('/api/causes/create', { cause: cause }, function(data) {
             console.log(data);
-            
         });
     };
 }
@@ -47,5 +46,9 @@ function PopulateController($scope, $http) {
 }
 
 function LoginController($scope, $http) {
-
+    $scope.login = function(user) {
+        $http.post('/api/users/create', { user }, function(data) {
+            console.log(data);
+        });
+    };
 }
