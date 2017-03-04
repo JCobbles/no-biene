@@ -154,7 +154,7 @@ app.post('/api/causes/create', function(req, res) { // create cause
             res.send(err);
         } else {
             console.log(req.body.cause);
-            res.json({ success: true, data: req.body });
+            res.json({ success: true, data: cause });
         }
     });
 });
