@@ -1,6 +1,7 @@
 angular.module('myApp')
     .controller('HomepageController', HomepageController)
-    .controller('CauseCreationController', CauseCreationController);
+    .controller('CauseCreationController', CauseCreationController)
+    .controller('PopulateController', PopulateController);
 
 HomepageController.$inject = ['$scope', '$http'];
 CauseCreationController.$inject = ['$scope', '$http'];
@@ -30,5 +31,11 @@ function ViewCauseController($scope, $http, $routeParams) {
     $http.get('/api/causes/find/' + $routeParams.id, function(cause) {
         console.log(cause);
         $scope.cause = cause;
+    });
+}
+
+function PopulateController($scope, $http) {
+    $http.get('/populate', function(data) {
+        console.log(data);
     });
 }
