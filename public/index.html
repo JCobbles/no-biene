@@ -13,15 +13,9 @@
             html          { overflow-y:scroll; }
             body          { padding-top:50px; }
             #todo-list    { margin-bottom:30px; text-align:left; }
-            p {
-                color: #888576;
-            }
-            p.dark-text {
-                color: black;
-            }
-            .mdl-layout__container {
-                height: 100px !important;
-            }
+            p { color: #888576; }
+            p.dark-text { color: black; }
+            .no-deco:hover { text-decoration: none; }
         </style>
         <script defer src="https://code.getmdl.io/1.3.0/material.min.js"></script>
         <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script><!-- load jquery -->
@@ -42,47 +36,45 @@
     <body ng-app="myApp">
         <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
 
-        <header class="mdl-layout__header">
-        <div class="mdl-layout__header-row">
-            <span class="mdl-layout-title">
-                Direct Charity
-            </span>
-            <!-- Navigation. We hide it in small screens. -->
-            <nav class="mdl-navigation mdl-cell--hide-tablet mdl-cell--hide-phone">
-                <a class="mdl-navigation__link mdl-typography--text-uppercase" href="#/">Home</a>
-                <a class="mdl-navigation__link mdl-typography--text-uppercase" href="#/">Browse Causes</a>
-                <a class="mdl-navigation__link mdl-typography--text-uppercase" href="#/create-cause">Create a Cause</a>
-                <a class="mdl-navigation__link mdl-typography--text-uppercase" href="#/">About Us</a>
-            </nav>
-            <!-- Add spacer, to align navigation to the right -->
-            <div class="mdl-layout-spacer"></div>
-            <nav class="mdl-navigation mdl-cell--hide-tablet mdl-cell--hide-phone">
-                <a class="mdl-navigation__link mdl-typography--text-uppercase" href="">Sign In</a>
+            <header class="mdl-layout__header">
+                <div class="mdl-layout__header-row">
+                    <span class="mdl-layout-title">
+                        Charity Direct
+                    </span>
+                    <!-- Navigation. We hide it in small screens. -->
+                    <nav class="mdl-navigation mdl-cell--hide-tablet mdl-cell--hide-phone">
+                        <a class="mdl-navigation__link mdl-typography--text-uppercase" href="#/">Home</a>
+                        <a class="mdl-navigation__link mdl-typography--text-uppercase" href="#/">Browse Causes</a>
+                        <a class="mdl-navigation__link mdl-typography--text-uppercase" href="#/create-cause">Create a Cause</a>
+                        <a class="mdl-navigation__link mdl-typography--text-uppercase" href="#/">About Us</a>
+                    </nav>
+                    <!-- Add spacer, to align navigation to the right -->
+                    <div class="mdl-layout-spacer"></div>
+                    <nav class="mdl-navigation mdl-cell--hide-tablet mdl-cell--hide-phone">
+                        <a class="mdl-navigation__link mdl-typography--text-uppercase" href="">Sign In</a>
 
-                <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-typography--text-uppercase mdl-button--accent">
-                    Sign Up
-                </button>
-            </nav>
+                        <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-typography--text-uppercase mdl-button--accent">
+                            Sign Up
+                        </button>
+                    </nav>
+                </div>
+            </header>
+            <div class="mdl-layout__drawer">
+                <span class="mdl-layout-title">Charity Direct</span>
+                <nav class="mdl-navigation">
+                    <a class="mdl-navigation__link mdl-typography--text-uppercase" href="#/">Home</a>
+                        <a class="mdl-navigation__link mdl-typography--text-uppercase" href="#/">Browse Causes</a>
+                        <a class="mdl-navigation__link mdl-typography--text-uppercase" href="#/create-cause">Create a Cause</a>
+                        <a class="mdl-navigation__link mdl-typography--text-uppercase" href="#/">About Us</a>
+                    <a class="mdl-navigation__link mdl-typography--text-uppercase" href="">Sign In</a>
+                    <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-typography--text-uppercase mdl-button--accent">
+                        Sign Up
+                    </button>
+                </nav>
+            </div>
+    
+            <ng-view></ng-view>
         </div>
-    </header>
-    <div class="mdl-layout__drawer">
-        <span class="mdl-layout-title">TITLE Area</span>
-        <nav class="mdl-navigation">
-            <a class="mdl-navigation__link mdl-typography--text-uppercase" href="#/">Home</a>
-                <a class="mdl-navigation__link mdl-typography--text-uppercase" href="#/">Browse Causes</a>
-                <a class="mdl-navigation__link mdl-typography--text-uppercase" href="#/create-cause">Create a Cause</a>
-                <a class="mdl-navigation__link mdl-typography--text-uppercase" href="#/">About Us</a>
-            <a class="mdl-navigation__link mdl-typography--text-uppercase" href="">Sign In</a>
-            <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-typography--text-uppercase mdl-button--accent">
-                Sign Up
-            </button>
-        </nav>
-    </div>
-
-    </div>
-
-        <ng-view></ng-view>
-
         <script>
             var app = angular.module("myApp", ["ngRoute"]);
             app.config(function($routeProvider) {

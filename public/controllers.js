@@ -2,7 +2,8 @@ angular.module('myApp')
     .controller('HomepageController', HomepageController)
     .controller('CauseCreationController', CauseCreationController)
     .controller('ViewCauseController', ViewCauseController)
-    .controller('PopulateController', PopulateController);
+    .controller('PopulateController', PopulateController)
+    .controller('LoginController', LoginController);
 
 HomepageController.$inject = ['$scope', '$http'];
 CauseCreationController.$inject = ['$scope', '$http'];
@@ -43,4 +44,8 @@ function PopulateController($scope, $http) {
     $http.get('/populate', function(data) {
         console.log(data);
     });
+}
+
+function LoginController($scope, $http) {
+
 }
