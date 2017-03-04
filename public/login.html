@@ -1,6 +1,26 @@
 <div ng-controller="LoginController" class="container">
 
-    <h2>Login</h2>
+    <h2 style="text-align: center">Login</h2>
 
-
+    <div class="mdl-grid">
+    <div class="mdl-layout-spacer"></div>
+        <div class="mdl-cell mdl-cell--4-col">
+            <div class="text-center">
+                <form style="display: block;" novalidate>
+                    <!-- <label>Title: <input type="text" ng-model="cause.title" /></label><br /> -->
+                    <div style="display: block; width: 100%;" class="mdl-textfield mdl-js-textfield">
+                        <input class="mdl-textfield__input" type="text" id="username" ng-model="user.username">
+                        <label class="mdl-textfield__label" for="username">Username</label>
+                    </div>
+                    <div style="display: block; width: 100%;" class="mdl-textfield mdl-js-textfield">
+                        <input class="mdl-textfield__input" type="password" id="password" ng-model="user.password">
+                        <label class="mdl-textfield__label" for="password">Password</label>
+                    </div>
+                    
+                    <input type="submit" ng-click="login(user)" value="Login/Register" class="mdl-button mdl-js-button mdl-button--raised"/>
+                </form>
+            </div>
+        </div>
+    <div class="mdl-layout-spacer"></div>
+    </div>
 </div>
