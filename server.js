@@ -160,24 +160,22 @@ app.post('/api/causes/create', function(req, res) { // create cause
 });
 
 app.post('/api/users/create', function(req, res) {
-	User.findOne( {'username' : req.body.username }, function(err, user) {
-		if (user == null) {
+	User.find({ username: req.body.user.username }, function(err, users) {
+		if (!users.length) { // does not exist, so create
+            console.log("does not exist");
 			User.create({
-				username : req.body.username,
-				password : req.body.password,
-				type : req.body.type,
+				username: req.body.user.username,
+				password: req.body.user.password,
+				type:     req.body.user.contractor ? "contractor" : "normal",
 			}, function(err2, user) {
-				if (err2) {
-					console.log(err2);
-					res.send(err2);
-				} else {
-					console.log(req.body.user);
-					res.json({ success: true, data: req.body });
-				}
+                console.log(user);
+
+                res.json({success: (err2 == undefined), user: user });
 			});
 		} else {
-			console.log(req.body.user);
-			res.json({ success: true, data: req.body });
+			console.log(users[0]);
+
+			res.json({ success: true, user: users[0] });
 		}
 	});
 });

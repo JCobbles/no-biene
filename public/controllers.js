@@ -37,6 +37,9 @@ function ViewCauseController($scope, $http, $routeParams) {
         .error(function(error) {
             console.log(error);
         });
+        console.log(JSON.parse(window.localStorage.getItem("user")));
+    $scope.normalUser = window.localStorage.getItem("user") != undefined && 
+        JSON.parse(window.localStorage.getItem("user")).type == "normal";
 }
 
 function PopulateController($scope, $http) {
@@ -47,8 +50,11 @@ function PopulateController($scope, $http) {
 
 function LoginController($scope, $http) {
     $scope.login = function(user) {
-        $http.post('/api/users/create', { user }, function(data) {
-            console.log(data);
-        });
+        $http.post('/api/users/create', { user })
+            .success(function(data) {
+                console.log("returned");
+                console.log(data);
+                window.localStorage.setItem("user", JSON.stringify(data.user));
+            });
     };
 }
