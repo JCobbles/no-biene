@@ -23,8 +23,11 @@ function CauseCreationController($scope, $http) {
     $scope.create = function(cause) {
         $http.post('/api/causes/create', { cause: cause }, function(data) {
             console.log(data);
+            
         });
     };
+
+
 }
 
 function ViewCauseController($scope, $http, $routeParams) {
