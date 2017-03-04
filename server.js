@@ -30,6 +30,7 @@ var Cause = mongoose.model('Cause', {
     date: Date,
     contractors: [{ name: String, price: Number, details: String, votes: Number, specificFundsPledged: Number }],
     currentFundsTotal: { type: Number, default: 0 },
+    photoURI: String
 });
 
 // routes
