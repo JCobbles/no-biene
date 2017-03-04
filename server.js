@@ -120,7 +120,7 @@ app.get('/api/causes/find/:cause_id', function(req, res) {
     });
 });
 
-app.get('/api/user/find/:user_id', function(req, res) {
+app.get('/api/users/find/:user_id', function(req, res) {
 	User.findByID(req.params.cause_id, function(err, user) {
 		if (err) {
 			res.send(err);
@@ -139,7 +139,6 @@ app.get('/api/pledge/:amount/:cause_id', function(req, res) {
             cause.currentFundsTotal += req.params.amount;
             cause.save();
             res.json(cause);
-
         }
 	});
 });
@@ -161,14 +160,21 @@ app.post('/api/causes/create', function(req, res) { // create cause
 });
 
 app.post('/api/users/create', function(req, res) {
-	User.create({
-		username : req.body.username,
-		password : req.body.password,
-		type : req.body.type,
-	}, function(err, user) {
-		if (err) {
-			console.log(err);
-			res.send(err);
+	User.findOne( {'username' : req.body.username }, function(err, user) {
+		if (user == null) {
+			User.create({
+				username : req.body.username,
+				password : req.body.password,
+				type : req.body.type,
+			}, function(err2, user) {
+				if (err2) {
+					console.log(err2);
+					res.send(err2);
+				} else {
+					console.log(req.body.user);
+					res.json({ success: true, data: req.body });
+				}
+			});
 		} else {
 			console.log(req.body.user);
 			res.json({ success: true, data: req.body });
