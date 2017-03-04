@@ -21,11 +21,6 @@ app.use(methodOverride());
 
 // define models
 
-var User = mongoose.model('User', {
-    username : String,
-    password : String,
-    causes: [{ id: String }],
-});
 var Cause = mongoose.model('Cause', {
     description: String,
     date: Date,
@@ -45,9 +40,9 @@ app.get('/api/causes/list', function(req, res) {
     });
 });
 
-app.get('/api/causes/find/:user_id', function(req, res) {
+app.get('/api/causes/find/:cause_id', function(req, res) {
 
-    Cause.findOne({ 'id': req.params.causeId }, function(err, causes) {
+    Cause.findOne({ 'id': req.params.cause_id }, function(err, causes) {
 
         if (err) {
             res.send(err)
@@ -57,23 +52,22 @@ app.get('/api/causes/find/:user_id', function(req, res) {
     });
 });
 
-app.get('*', function(req, res) {
-    res.sendfile('./public/index.html');
-});
+app.post('/api/causes/create', function(req, res) { // create cause
 
-// create user
-app.post('/api/users/create', function(req, res) {
-
-    User.create({
-        username : req.body.username,
-        password : req.body.password
-    }, function(err, user) {
+    Cause.create({
+        description : req.body.description,
+        date : new Date(),
+    }, function(err, cause) {
         if (err) {
             res.send(err);
         } else {
             res.json({ success: true });
         }
     });
+});
+
+app.get('*', function(req, res) {
+    res.sendfile('./public/index.html');
 });
 
 app.listen(process.env.PORT || 8080);
