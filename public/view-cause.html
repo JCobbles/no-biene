@@ -1,8 +1,18 @@
 <div ng-controller="ViewCauseController">
-
+    <style>
+        .mdl-tabs__panel {
+            padding-top: 50px;
+        }
+        .img-banner {
+            margin-bottom: 50px;
+            background-size: cover;
+            background-position-y: 50%;height: 210px;text-align: center;
+        }
+    </style>
     <div class="container">
-        <div style="background-image: url({{ cause.photoURI }});">
         <h2>{{ cause.title }}</h2>
+        <div class="img-banner" style="background-image: url({{ cause.photoURI }});">
+            
         </div>
 
         <div class="mdl-tabs mdl-js-tabs mdl-js-ripple-effect">
@@ -13,24 +23,33 @@
             </div>
 
             <div class="mdl-tabs__panel is-active" id="campaign">
-                <blockquote><p>{{ cause.description }}</p></blockquote>
+                <p class="dark-text">{{ cause.description }}</p>
                 <p>{{ cause.details }}</p>
             </div>
             <div class="mdl-tabs__panel" id="updates">
-                <ul>
-                    
-                </ul>
+                <span>04 March 2017</span>
+                <h4>Local goverment agreed to contract</h4>
+                <br />
+                <p>
+                    Donec non ex sed odio laoreet porta. Etiam ac consequat nunc. Cras imperdiet sit amet sapien non pellentesque. Etiam vel sollicitudin arcu. Vestibulum a lorem congue, lobortis sem eu, aliquam diam. Pellentesque eu volutpat odio. Sed pharetra arcu ut purus rhoncus pellentesque. Sed a euismod sapien. Aenean ultricies ultrices mattis.
+                </p>
+                
             </div>
             <div class="mdl-tabs__panel" id="contractors">
-                <ul ng-repeat="cause in causes" class="col-md-6">
-
-                    <li>Local Construction Company<br>Price: {{ cause }}</li>
-                    <li></li>
+                
+                <ul ng-repeat="contractor in cause.contractors" ng-if="cause.contractors.length > 0" class="col-md-6">
+                    <li>{{ contractor.name }}<br>Price: {{ contractor.price }}</li>
                 </ul>
+                <div ng-if="cause.contractors.length <= 0">
+                    <h5>No contractors</h5>
+                </div>
             </div>
         </div>
         
-
-        
     </div>
+    <script>
+        if(!(typeof(componentHandler) == 'undefined')){
+            componentHandler.upgradeAllRegistered();
+        }
+    </script>
 </div>

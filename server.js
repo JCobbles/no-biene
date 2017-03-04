@@ -30,7 +30,7 @@ var Cause = mongoose.model('Cause', {
     date: Date,
     contractors: [{ name: String, price: Number, details: String, votes: Number, specificFundsPledged: Number }],
     currentFundsTotal: { type: Number, default: 0 },
-    photoURI: String
+    photoURI: { type: String, default: '' }
 });
 
 var User = mongoose.model('User', {
@@ -48,7 +48,7 @@ app.get('/populate', function(req, res) {
         description: "Aenean ullamcorper vestibulum tortor. Duis ornare vitae justo sed semper. Ut est sapien, interdum ornare urna nec, posuere elementum nunc. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae.",
         details: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas dapibus quis urna sed interdum. Nullam tincidunt ante lacus, ac aliquet eros facilisis eget. Nulla nisl neque, sagittis in nibh nec, mollis sagittis justo. Morbi eleifend ex ut nisi viverra eleifend. Etiam placerat imperdiet erat. Nulla vulputate aliquet imperdiet. Ut dignissim odio quis mauris sollicitudin pellentesque.",
         date: new Date(),
-        latitude: 39.916732, longitude: 32.814906
+        latitude: 39.916732, longitude: 32.814906,
     }, function(err, cause) {console.log(err);console.log(cause);});
     Cause.create({
         title: "Secure clean water supply",
@@ -91,7 +91,8 @@ app.get('/populate', function(req, res) {
         description: "Aenean ullamcorper vestibulum tortor. Duis ornare vitae justo sed semper. Ut est sapien, interdum ornare urna nec, posuere elementum nunc. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae.",
         details : "Cras iaculis mi eget pharetra mollis. Vivamus vestibulum purus libero, ut sodales justo feugiat at. Vestibulum sed maximus est, ac pellentesque augue. Mauris iaculis dignissim consectetur. Mauris gravida eget neque ac condimentum. Maecenas sodales ipsum tortor, vitae lobortis diam gravida ut. Sed ipsum justo, vehicula vitae ullamcorper id, tempor ut dolor. Integer ac risus ligula. In dictum urna nibh, cursus cursus ante tristique id. Sed lobortis mauris id ante venenatis lacinia. Proin suscipit purus ut quam mollis, eu tincidunt velit consequat.",
         date : new Date(),
-        latitude: 48.359093, longitude: 10.904820
+        latitude: 48.359093, longitude: 10.904820,
+        contractors: ""
     }, function(err, cause) {console.log(err);});
     // 34.374669, longitude: 42.867019
     // {lat: 35.069766, lng: 52.893061}, // near tehran
