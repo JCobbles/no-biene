@@ -47,5 +47,11 @@ function PopulateController($scope, $http) {
 }
 
 function LoginController($scope, $http) {
-
+    $http.get('/api/users/find/' + $routeParams.id)
+    .success(function(user) {
+        $scope.user = user;
+    })
+    .error(function(error) {
+        console.log(error);
+    });
 }
