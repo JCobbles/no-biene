@@ -25,7 +25,6 @@ function CauseCreationController($scope, $http) {
     $scope.create = function(cause) {
         $http.post('/api/causes/create', { cause: cause }, function(data) {
             console.log(data);
-            
         });
     };
 }
@@ -38,6 +37,9 @@ function ViewCauseController($scope, $http, $routeParams) {
         .error(function(error) {
             console.log(error);
         });
+        console.log(JSON.parse(window.localStorage.getItem("user")));
+    $scope.normalUser = window.localStorage.getItem("user") != undefined && 
+        JSON.parse(window.localStorage.getItem("user")).type == "normal";
 }
 
 function PopulateController($scope, $http) {
@@ -47,11 +49,13 @@ function PopulateController($scope, $http) {
 }
 
 function LoginController($scope, $http) {
-    $http.get('/api/users/find/' + $routeParams.id)
-    .success(function(user) {
-        $scope.user = user;
-    })
-    .error(function(error) {
-        console.log(error);
-    });
+    $scope.login = function(user) {
+        $http.post('/api/users/create', { user })
+            .success(function(data) {
+                console.log("returned");
+                console.log(data);
+                window.localStorage.setItem("user", JSON.stringify(data.user));
+            });
+    };
+>>>>>>> 1e400cb2783da1a071b89abcad8154a3ce700293
 }
