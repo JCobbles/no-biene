@@ -28,7 +28,7 @@ var Cause = mongoose.model('Cause', {
     latitude: Number,
     longitude: Number,
     date: Date,
-    contractors: [{ name: String, price: Number, details: String, votes: Number, specificFundsPledged: Number }],
+    contractors: [{ name: String, price: Number, details: String, votes: { type: Number, default: 0 }, specificFundsPledged: { type: Number, default: 0 } }],
     currentFundsTotal: { type: Number, default: 0 },
     photoURI: { type: String, default: '' }
 });
@@ -92,7 +92,7 @@ app.get('/populate', function(req, res) {
         details : "Cras iaculis mi eget pharetra mollis. Vivamus vestibulum purus libero, ut sodales justo feugiat at. Vestibulum sed maximus est, ac pellentesque augue. Mauris iaculis dignissim consectetur. Mauris gravida eget neque ac condimentum. Maecenas sodales ipsum tortor, vitae lobortis diam gravida ut. Sed ipsum justo, vehicula vitae ullamcorper id, tempor ut dolor. Integer ac risus ligula. In dictum urna nibh, cursus cursus ante tristique id. Sed lobortis mauris id ante venenatis lacinia. Proin suscipit purus ut quam mollis, eu tincidunt velit consequat.",
         date : new Date(),
         latitude: 48.359093, longitude: 10.904820,
-        contractors: ""
+        contractors: [ { name: "Local Infrastructure Company", price: 1000, details: "We will infrastructure your infrastructure." } ]
     }, function(err, cause) {console.log(err);});
     // 34.374669, longitude: 42.867019
     // {lat: 35.069766, lng: 52.893061}, // near tehran
@@ -184,15 +184,5 @@ app.get('*', function(req, res) {
     res.sendfile('./public/index.html');
 });
 
-for (var i = 0; i<4; i++) {
-    Cause.create({
-            title: "Fund the repair of local hospital",
-            description: "Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Morbi eu dapibus enim. Phasellus tincidunt purus metus, eget ornare dui sagittis vulputate.",
-            details : "Morbi aliquam lorem ante, a mattis tortor ornare vitae. Maecenas mollis elit leo, vel accumsan enim mollis venenatis. Donec pulvinar, tellus id tempor fermentum, erat metus tincidunt nisi, eu aliquet dui est sit amet odio. Aliquam in cursus ante, vitae vehicula metus. Nunc vel mattis nulla. Mauris quis vehicula magna. Nam tincidunt, dolor ac egestas bibendum, nulla mauris accumsan nisl, a imperdiet purus tellus ut enim.",
-            date : new Date(),
-            latitude: 39.986732, longitude: 34.814906
-        }, function(err, cause) {});
-
-}
 app.listen(process.env.PORT || 8080);
 console.log("App listening on port " + (process.env.PORT || 8080));

@@ -20,7 +20,7 @@
                 <a href="#campaign" class="mdl-tabs__tab is-active">Campaign</a>
                 <a href="#updates" class="mdl-tabs__tab">Updates</a>
                 <a href="#contractors" class="mdl-tabs__tab">Contractors</a>
-                <a ng-if="normalUser" href="#donate" class="mdl-tabs__tab">Donate</a>
+                <a ng-show="normalUser" href="#donate" class="mdl-tabs__tab">Donate</a>
             </div>
 
             <div class="mdl-tabs__panel is-active" id="campaign">
@@ -39,11 +39,21 @@
             <div class="mdl-tabs__panel" id="contractors">
                 
                 <ul ng-repeat="contractor in cause.contractors" ng-if="cause.contractors.length > 0" class="col-md-6">
-                    <li>{{ contractor.name }}<br>Price: {{ contractor.price }}</li>
+                    <li>{{ contractor.name }}<br>Price: £{{ contractor.price }}</li>
                 </ul>
                 <div ng-if="cause.contractors.length <= 0">
                     <h5>No contractors</h5>
                 </div>
+            </div>
+
+            <div id="donate" ng-show="normalUser" class="mdl-tabs__panel" >
+                <form style="margin: 0 auto;width: 200px;display: block;">
+                    <div style="display: block; width: 100%;" class="mdl-textfield mdl-js-textfield">
+                        £<input style="display: inline-block;width: 135px;" class="mdl-textfield__input" type="text" id="d" pattern="-?[0-9]*(\.[0-9]+)?" ng-model="amount">
+                        <label style="padding-left: 15px;" class="mdl-textfield__label" for="d">I want to donate</label>
+                    </div>
+                        <input type="submit" ng-click="donate(amount)" value="Donate" class="mdl-button mdl-js-button mdl-button--raised"/>
+                </form>
             </div>
         </div>
         

@@ -52,8 +52,7 @@ function LoginController($scope, $http) {
     $scope.login = function(user) {
         $http.post('/api/users/create', { user })
             .success(function(data) {
-                console.log("returned");
-                console.log(data);
+                $scope.loggedIn = true;
                 window.localStorage.setItem("user", JSON.stringify(data.user));
             });
     };
