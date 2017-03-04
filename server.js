@@ -33,6 +33,12 @@ var Cause = mongoose.model('Cause', {
     photoURI: String
 });
 
+var User = mongoose.model('User', {
+	username: String,
+	password: String,
+	type: String
+});
+
 // routes
 
 app.get('/populate', function(req, res) {
@@ -141,6 +147,22 @@ app.post('/api/causes/create', function(req, res) { // create cause
             res.json({ success: true, data: req.body });
         }
     });
+});
+
+app.post('/api/users/create', function(req, res) {
+	User.create({
+		username : req.body.username,
+		password : req.body.password,
+		type : req.body.type,
+	}, function(err, user) {
+		if (err) {
+			console.log(err);
+			res.send(err);
+		} else {
+			console.log(req.body.user);
+			res.json({ success: true, data: req.body });
+		}
+	});
 });
 
 app.get('*', function(req, res) {
