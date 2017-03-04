@@ -57,5 +57,4 @@ function LoginController($scope, $http) {
                 window.localStorage.setItem("user", JSON.stringify(data.user));
             });
     };
->>>>>>> 1e400cb2783da1a071b89abcad8154a3ce700293
 }
