@@ -119,6 +119,16 @@ app.get('/api/causes/find/:cause_id', function(req, res) {
     });
 });
 
+app.get('/api/user/find/:user_id', function(req, res) {
+	User.findByID(req.params.cause_id, function(err, user) {
+		if (err) {
+			res.send(err);
+		} else {
+			res.json(user);
+		}
+	});
+});
+
 app.get('/api/pledge/:amount/:cause_id', function(req, res) {
     Cause.findOne({ '_id': req.params.cause_id }, function(err, cause) {
         if (err) {
