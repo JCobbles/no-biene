@@ -15,6 +15,32 @@
             
         </div>
 
+        <table style="margin:0 auto;" ng-if="cause.contractors.length > 0" class="mdl-data-table mdl-js-data-table">
+            <thead>
+                <tr>
+                    <th class="mdl-data-table__cell--non-numeric">Contractor</th>
+                    <th>Price</th>
+                    <th>Votes</th>
+                </tr>
+            </thead>
+            <tbody ng-repeat="contractor in cause.contractors" >
+                <tr>
+                    <td>{{ contractor.name }}</td>
+                    <td>£{{ contractor.price }}</td>
+                    <td>0</td>
+                </tr>
+            </tbody>
+        </table>
+        <br>
+        <table style="margin:0px auto 25px auto;" class="mdl-data-table mdl-js-data-table">
+            <thead>
+                <tr>
+                    <th class="mdl-data-table__cell--non-numeric">Total pledged</th>
+                    <th>£{{ cause.currentFundsTotal }}</th>
+                    <th>(non-distributed)</th>
+                </tr>
+            </thead>
+        </table>
         <div class="mdl-tabs mdl-js-tabs mdl-js-ripple-effect">
             <div class="mdl-tabs__tab-bar">
                 <a href="#campaign" class="mdl-tabs__tab is-active">Campaign</a>
@@ -42,7 +68,7 @@
                     <li>{{ contractor.name }}<br>Price: £{{ contractor.price }}</li>
                 </ul>
                 <div ng-if="cause.contractors.length <= 0">
-                    <h5>No contractors</h5>
+                    <h5>No contractors yet</h5>
                 </div>
             </div>
 
@@ -52,7 +78,7 @@
                         £<input style="display: inline-block;width: 135px;" class="mdl-textfield__input" type="text" id="d" pattern="-?[0-9]*(\.[0-9]+)?" ng-model="amount">
                         <label style="padding-left: 15px;" class="mdl-textfield__label" for="d">I want to donate</label>
                     </div>
-                        <input type="submit" ng-click="donate(amount)" value="Donate" class="mdl-button mdl-js-button mdl-button--raised"/>
+                    <input type="submit" ng-click="donate(amount)" value="Donate" class="mdl-button mdl-js-button mdl-button--raised"/>
                 </form>
             </div>
         </div>
