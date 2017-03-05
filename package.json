@@ -1,6 +1,6 @@
 {
   "name": "pear",
-  "version": "0.0.0",
+  "version": "1.0.0",
   "description": "Transparent charity.",
   "main": "server.js",
   "author": "Biene",
