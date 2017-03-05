@@ -57,52 +57,46 @@
 </div>
 
 <script>
-    function initMap() {
-        var causes = angular.element($("ng-view .ng-scope")).scope().causes;
+    var map;
+    var populated = true;
+    function populateMap(google) {
+        if (google === undefined) {
+            populated = false;
+            return;
+        }
         var locations = [];
+        var causes = angular.element($("ng-view .ng-scope")).scope().causes;
         for (var i = 0; i <= causes.length; i++) {
             if (causes[i] && causes[i].latitude) {
                 locations.push({ lat: causes[i].latitude, lng: causes[i].longitude });
             }
         }
-        var map = new google.maps.Map(document.getElementById('map'), {
+        var labels = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+
+        var markers = locations.map(function(location, i) {
+            return new google.maps.Marker({
+                position: location,
+                label: labels[i % labels.length]
+            });
+        });
+
+        // Add a marker clusterer to manage the markers.
+        var markerCluster = new MarkerClusterer(map, markers, { imagePath: 'https://raw.githubusercontent.com/googlemaps/v3-utility-library/master/markerclustererplus/images/m' });
+    }
+
+    function initMap() {
+        
+        map = new google.maps.Map(document.getElementById('map'), {
             zoom: 3,
             center: {lat: 37.10672, lng: 41.15185}
         });
 
-    // Create an array of alphabetical characters used to label the markers.
-    var labels = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+        // Create an array of alphabetical characters used to label the markers.
+        if (!populated) {
+            populateMap(google);
+        }
+    }
 
-    var markers = locations.map(function(location, i) {
-        return new google.maps.Marker({
-            position: location,
-            label: labels[i % labels.length]
-        });
-    });
-
-    // Add a marker clusterer to manage the markers.
-    var markerCluster = new MarkerClusterer(map, markers, { imagePath: 'https://raw.githubusercontent.com/googlemaps/v3-utility-library/master/markerclustererplus/images/m' });
-
-}
-
-
-var locations = [
-
-{lat: -37.750000, lng: 145.116667},
-{lat: -37.759859, lng: 145.128708},
-{lat: -37.765015, lng: 145.133858},
-{lat: -37.770104, lng: 145.143299},
-{lat: -37.773700, lng: 145.145187},
-{lat: -37.774785, lng: 145.137978},
-{lat: -37.819616, lng: 144.968119},
-{lat: -38.330766, lng: 144.695692},
-{lat: -39.927193, lng: 175.053218},
-{lat: -41.330162, lng: 174.865694},
-{lat: -42.734358, lng: 147.439506},
-{lat: -42.734358, lng: 147.501315},
-{lat: -42.735258, lng: 147.438000},
-{lat: -43.999792, lng: 170.463352}
-]
 </script>
 
 

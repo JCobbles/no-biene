@@ -14,9 +14,11 @@ ViewCauseController.$inject = ['$scope', '$http', '$routeParams', '$window'];
 function HomepageController($scope, $http) {
     $scope.formData = {};
 
+
     $http.get('/api/causes/list')
         .success(function(data) {
             $scope.causes = data;
+            populateMap(undefined);
             console.log(data);
         })
         .error(function(data) {
