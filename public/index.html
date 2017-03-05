@@ -51,9 +51,9 @@
                     <!-- Add spacer, to align navigation to the right -->
                     <div class="mdl-layout-spacer"></div>
                     <nav class="mdl-navigation mdl-cell--hide-tablet mdl-cell--hide-phone">
-                        <a class="mdl-navigation__link mdl-typography--text-uppercase" href="#/login">Sign In</a>
+                        <a class="loginButton mdl-navigation__link mdl-typography--text-uppercase" href="#/login">Sign In</a>
 
-                        <a href="#/login" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-typography--text-uppercase mdl-button--accent">
+                        <a href="#/login" class="signUpButton mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-typography--text-uppercase mdl-button--accent">
                             Sign Up
                         </a>
                     </nav>
@@ -65,8 +65,9 @@
                     <a class="mdl-navigation__link mdl-typography--text-uppercase" href="#/">Home</a>
                         <a class="mdl-navigation__link mdl-typography--text-uppercase" href="#/">Browse Causes</a>
                         <a class="mdl-navigation__link mdl-typography--text-uppercase" href="#/create-cause">Create a Cause</a>
-                    <a class="mdl-navigation__link mdl-typography--text-uppercase" href="#/login">Sign In</a>
-                    <a href="#/login" class="mdl-navigation__link mdl-button--raised mdl-js-ripple-effect mdl-typography--text-uppercase mdl-button--accent">
+                        <a class="mdl-navigation__link mdl-typography--text-uppercase" href="#/">About Us</a>
+                        <a class="loginButton mdl-navigation__link mdl-typography--text-uppercase" href="#/login">Sign In</a>
+                        <a href="#/login" class="signUpButton mdl-navigation__link mdl-button--raised mdl-js-ripple-effect mdl-typography--text-uppercase mdl-button--accent">
                         Sign Up
                     </a>
                 </nav>
@@ -94,11 +95,34 @@
                     templateUrl: "login.html",
                     controller: 'LoginController'
                 })
+                .when("/logout", {
+                    templateUrl: "logout.html",
+                    controller: 'LogoutController'
+                })
                 .when("/populate", {
                     templateUrl: "populate.html",
                     controller: "PopulateController"
                 });
             });
+
+            var loginButtons = $(".loginButton");
+            var signUpButtons = $(".signUpButton");
+            var loggedIn = window.localStorage.getItem("user") !== undefined && window.localStorage.getItem("user") !== null
+            console.log(signUpButtons);
+            console.log(loginButtons);
+            if (loggedIn) {
+                for (var i = 0; i <= 1; i++) {
+                    $(loginButtons[i]).prop("href", "#/logout");
+                    $(loginButtons[i]).prop("text", "Sign out");
+                    $(signUpButtons[i]).css("display", "none");
+                }
+            } else {
+                for (var i = 0; i <= 1; i++) {
+                    $(loginButtons[i]).prop("href", "#/login");
+                    $(loginButtons[i]).prop("text", "Sign in");
+                    $(signUpButtons[i]).css("display", "initial");
+                }
+            }
         </script>
         <script src="controllers.js"></script>
         
