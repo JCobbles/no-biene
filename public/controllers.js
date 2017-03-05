@@ -3,10 +3,12 @@ angular.module('myApp')
     .controller('CauseCreationController', CauseCreationController)
     .controller('ViewCauseController', ViewCauseController)
     .controller('PopulateController', PopulateController)
-    .controller('LoginController', LoginController);
+    .controller('LoginController', LoginController)
+    .controller('LogoutController', LogoutController);
 
 HomepageController.$inject = ['$scope', '$http'];
 CauseCreationController.$inject = ['$scope', '$http', '$location'];
+LogoutController.$inject = ['$scope', '$http', '$window'];
 
 function HomepageController($scope, $http) {
     $scope.formData = {};
@@ -22,6 +24,8 @@ function HomepageController($scope, $http) {
 }
 
 function CauseCreationController($scope, $http, $location) {
+    $scope.loggedIn = window.localStorage.getItem("user") !== undefined && window.localStorage.getItem("user") !== null
+
     $scope.create = function(cause) {
         $http.post('/api/causes/create', { cause: cause })
             .success(function(data) {
@@ -32,6 +36,8 @@ function CauseCreationController($scope, $http, $location) {
 }
 
 function ViewCauseController($scope, $http, $routeParams) {
+    $scope.loggedIn = window.localStorage.getItem("user") !== undefined && window.localStorage.getItem("user") !== null
+
     $http.get('/api/causes/find/' + $routeParams.id)
         .success(function(cause) {
             $scope.cause = cause;
@@ -62,12 +68,18 @@ function PopulateController($scope, $http) {
     });
 }
 
-function LoginController($scope, $http) {
+function LoginController($scope, $http, $window) {
     $scope.login = function(user) {
         $http.post('/api/users/create', { user })
             .success(function(data) {
                 $scope.loggedIn = true;
                 window.localStorage.setItem("user", JSON.stringify(data.user));
+                $window.location.href = '/';
             });
     };
+}
+
+function LogoutController($scope, $http, $window) {
+    window.localStorage.removeItem("user");
+    $window.location.href = '/';
 }
