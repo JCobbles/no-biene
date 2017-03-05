@@ -27,7 +27,7 @@
                     <thead>
                         <tr>
                             <th class="mdl-data-table__cell--non-numeric">Total pledged</th>
-                            <th>£{{ cause.currentFundsTotal }}</th>
+                            <th><b>£{{ cause.currentFundsTotal }}</b></th>
                             <th>(non-distributed)</th>
                         </tr>
                     </thead>
@@ -103,26 +103,29 @@
         if(!(typeof(componentHandler) == 'undefined')){
             componentHandler.upgradeAllRegistered();
         }
-
+function numberWithCommas(x) {
+    return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+}
         function initChart(totalPledged, contractors) {
             var labels = [];
-            var series = [[]];
+            var series = [[], []];
             for (var i = 1; i <= contractors.length; i++) {
                 labels.push("C" + i);
-                series[0]
+                var contractor = contractors[i-1];
+                series[0].push(contractor.specificFundsPledged);
+                series[1].push( contractor.price - contractor.specificFundsPledged);
             }
             new Chartist.Bar('.ct-chart', {
                 labels: labels,
-                series: [
-                    [800000, 1200000, 1400000, 1300000], // con 1, con 2, con 3, con 4 (specificFundsPledged)
-                    [200000, 400000, 500000, 300000]     // con 1, con 2, con 3, con 4 (price - specificFundsPledged)
-                    
-                ]
+                series: series//[
+                    //[800000, 1200000, 1400000, 1300000], // con 1, con 2, con 3, con 4 (specificFundsPledged)
+                    //[200000, 400000, 500000, 300000]     // con 1, con 2, con 3, con 4 (price - specificFundsPledged)
+                //]
             }, {
                 stackBars: true,
                 axisY: {
                     labelInterpolationFnc: function(value) {
-                    return (value / 1000) + 'k';
+                        return (value / 1000) + 'k';
                     }
                 }
             }).on('draw', function(data) {

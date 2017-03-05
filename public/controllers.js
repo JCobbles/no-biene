@@ -59,11 +59,10 @@ function ViewCauseController($scope, $http, $routeParams, $window) {
 
     $scope.donate = function(donation) {
         console.log(donation);
-        return;
         var amount = donation.amount;
-        var contractor = donation.contractor;
-        console.log('/api/pledge/' + amount + '/' + $scope.cause._id);
-        $http.get('/api/pledge/' + amount + '/' + $scope.cause._id)
+        var contractor = donation["contractor1"] ? 0 : donation["contractor2"] ? 1 : -1;
+        console.log('/api/pledge/' + amount + '/' + $scope.cause._id + '/' + contractor);
+        $http.post('/api/pledge', { amount, cause_id: $scope.cause._id, contractor })
             .success(function(cause) {
                 console.log(cause);
                 $scope.cause = cause;

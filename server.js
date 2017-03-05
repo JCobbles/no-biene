@@ -133,13 +133,19 @@ app.get('/api/users/find/:user_id', function(req, res) {
 	});
 });
 
-app.get('/api/pledge/:amount/:cause_id', function(req, res) {
-    Cause.findOne({ '_id': req.params.cause_id }, function(err, cause) {
+app.post('/api/pledge', function(req, res) {
+    console.log(req.body);
+    Cause.findById(req.body.cause_id, function(err, cause) {
         if (err) {
             res.json(err);
         } else {
+            var amount = parseInt(req.body.amount);
             //update the cause with the new monies req.params.amount
-            cause.currentFundsTotal += parseInt(req.params.amount);
+            cause.currentFundsTotal += amount;
+            if (req.body.contractor != -1) {
+                cause.contractors[req.body.contractor].specificFundsPledged += amount;
+            }
+            console.log(cause);
             cause.save();
             res.json(cause);
         }
