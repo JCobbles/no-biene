@@ -27,13 +27,17 @@ function HomepageController($scope, $http) {
 function CauseCreationController($scope, $http, $location) {
     $scope.loggedIn = window.localStorage.getItem("user") !== undefined && window.localStorage.getItem("user") !== null
 
-    $scope.create = function(cause) {
-        $http.post('/api/causes/create', { cause: cause })
-            .success(function(data) {
-                console.log(data.cause);
-                $location.url('view-cause/' + data.cause._id);
-            });
-    };
+    if ($scope.loggedIn) {
+        $scope.create = function(cause) {
+            $http.post('/api/causes/create', { cause: cause })
+                .success(function(data) {
+                    console.log(data.cause);
+                    $location.url('view-cause/' + data.cause._id);
+                });
+        };
+    } else {
+        // TODO: display a message to user
+    }
 }
 
 function ViewCauseController($scope, $http, $routeParams, $window) {
@@ -47,7 +51,7 @@ function ViewCauseController($scope, $http, $routeParams, $window) {
             console.log(error);
         });
         console.log(JSON.parse(window.localStorage.getItem("user")));
-    $scope.normalUser = window.localStorage.getItem("user") != undefined && 
+    $scope.normalUser = window.localStorage.getItem("user") != undefined &&
         JSON.parse(window.localStorage.getItem("user")).type == "normal";
 
     $scope.donate = function(amount) {
