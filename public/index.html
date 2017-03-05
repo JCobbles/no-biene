@@ -105,8 +105,6 @@
             var loginButtons = $(".loginButton");
             var signUpButtons = $(".signUpButton");
             var loggedIn = window.localStorage.getItem("user") !== undefined && window.localStorage.getItem("user") !== null
-            console.log(signUpButtons);
-            console.log(loginButtons);
             if (loggedIn) {
                 for (var i = 0; i <= 1; i++) {
                     $(loginButtons[i]).prop("href", "#/logout");

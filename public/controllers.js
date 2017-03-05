@@ -18,7 +18,7 @@ function HomepageController($scope, $http) {
     $http.get('/api/causes/list')
         .success(function(data) {
             $scope.causes = data;
-            populateMap();
+            populateMap(undefined);
             console.log(data);
         })
         .error(function(data) {
