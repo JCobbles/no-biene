@@ -8,9 +8,9 @@
         <title>No Biene</title>
 
         <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Roboto:300,400,500,700" type="text/css">
-        <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css"> 
+        <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css">
         <style>
-            html          { overflow-y:scroll; }
+            /*html          { overflow-y:scroll; } removed this to get rid of second v scrollbar */
             body          { padding-top:50px; }
             #todo-list    { margin-bottom:30px; text-align:left; }
             p { color: #888576; }
@@ -23,7 +23,7 @@
         <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-route.js"></script>
         <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
         <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.indigo-pink.min.css">
-        
+
 
         <style>
             body { padding: 0; }
@@ -46,7 +46,7 @@
                         <a class="mdl-navigation__link mdl-typography--text-uppercase" href="#/">Home</a>
                         <a class="mdl-navigation__link mdl-typography--text-uppercase" href="#/">Browse Causes</a>
                         <a class="mdl-navigation__link mdl-typography--text-uppercase" href="#/create-cause">Create a Cause</a>
-                        
+
                     </nav>
                     <!-- Add spacer, to align navigation to the right -->
                     <div class="mdl-layout-spacer"></div>
@@ -63,15 +63,15 @@
                 <span class="mdl-layout-title">Charity Direct</span>
                 <nav class="mdl-navigation">
                     <a class="mdl-navigation__link mdl-typography--text-uppercase" href="#/">Home</a>
-                        <a class="mdl-navigation__link mdl-typography--text-uppercase" href="#/">Browse Causes</a>
-                        <a class="mdl-navigation__link mdl-typography--text-uppercase" href="#/create-cause">Create a Cause</a>
+                    <a class="mdl-navigation__link mdl-typography--text-uppercase" href="#/">Browse Causes</a>
+                    <a class="mdl-navigation__link mdl-typography--text-uppercase" href="#/create-cause">Create a Cause</a>
                     <a class="mdl-navigation__link mdl-typography--text-uppercase" href="#/login">Sign In</a>
                     <a href="#/login" class="mdl-navigation__link mdl-button--raised mdl-js-ripple-effect mdl-typography--text-uppercase mdl-button--accent">
                         Sign Up
                     </a>
                 </nav>
             </div>
-    
+
             <ng-view></ng-view>
         </div>
         <script>
@@ -101,6 +101,6 @@
             });
         </script>
         <script src="controllers.js"></script>
-        
+
     </body>
 </html>
