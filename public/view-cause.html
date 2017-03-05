@@ -14,39 +14,32 @@
         <div class="img-banner" style="background-image: url({{ cause.photoURI }});">
             
         </div>
-
-        <table style="margin:0 auto;" ng-if="cause.contractors.length > 0" class="mdl-data-table mdl-js-data-table">
-            <thead>
-                <tr>
-                    <th class="mdl-data-table__cell--non-numeric">Contractor</th>
-                    <th>Price</th>
-                    <th>Votes</th>
-                </tr>
-            </thead>
-            <tbody ng-repeat="contractor in cause.contractors" >
-                <tr>
-                    <td>{{ contractor.name }}</td>
-                    <td>£{{ contractor.price }}</td>
-                    <td>0</td>
-                </tr>
-            </tbody>
-        </table>
-        <br>
-        <table style="margin:0px auto 25px auto;" class="mdl-data-table mdl-js-data-table">
-            <thead>
-                <tr>
-                    <th class="mdl-data-table__cell--non-numeric">Total pledged</th>
-                    <th>£{{ cause.currentFundsTotal }}</th>
-                    <th>(non-distributed)</th>
-                </tr>
-            </thead>
-        </table>
+        <div class="row">
+            <div class="col-sm-6">
+                <section style="max-width: 300px;">
+                    <div style="width:100%;">
+                        <div class="ct-chart ct-perfect-fourth"></div>
+                    </div>
+                <section>
+            </div>
+            <div class="col-sm-6">
+                <table style="margin:0px auto 25px auto;" class="mdl-data-table mdl-js-data-table">
+                    <thead>
+                        <tr>
+                            <th class="mdl-data-table__cell--non-numeric">Total pledged</th>
+                            <th>£{{ cause.currentFundsTotal }}</th>
+                            <th>(non-distributed)</th>
+                        </tr>
+                    </thead>
+                </table>
+            </div>
+        </div>
+        
         <div class="mdl-tabs mdl-js-tabs mdl-js-ripple-effect">
             <div class="mdl-tabs__tab-bar">
                 <a href="#campaign" class="mdl-tabs__tab is-active">Campaign</a>
                 <a href="#updates" class="mdl-tabs__tab">Updates</a>
                 <a href="#contractors" class="mdl-tabs__tab">Contractors</a>
-                <a ng-show="normalUser" href="#donate" class="mdl-tabs__tab">Donate</a>
             </div>
 
             <div class="mdl-tabs__panel is-active" id="campaign">
@@ -63,30 +56,82 @@
                 
             </div>
             <div class="mdl-tabs__panel" id="contractors">
-                
-                <ul ng-repeat="contractor in cause.contractors" ng-if="cause.contractors.length > 0" class="col-md-6">
-                    <li>{{ contractor.name }}<br>Price: £{{ contractor.price }}</li>
-                </ul>
                 <div ng-if="cause.contractors.length <= 0">
-                    <h5>No contractors yet</h5>
-                </div>
-            </div>
-
-            <div id="donate" ng-show="normalUser" class="mdl-tabs__panel" >
-                <form style="margin: 0 auto;width: 200px;display: block;">
-                    <div style="display: block; width: 100%;" class="mdl-textfield mdl-js-textfield">
-                        £<input style="display: inline-block;width: 135px;" class="mdl-textfield__input" type="text" id="d" pattern="-?[0-9]*(\.[0-9]+)?" ng-model="amount">
+                        <h5>No contractors yet</h5>
+                    </div>
+                <form style="margin: 0 auto;max-width: 400px;display: block;">
+  
+                    <table style="margin:0 auto;" ng-show="cause.contractors.length > 0" class="mdl-data-table mdl-js-data-table mdl-shadow--2dp">
+                        <thead>
+                            <tr>
+                                <th></th>
+                                <th class="mdl-data-table__cell--non-numeric">Contractor</th>
+                                <th>Price</th>
+                                <th>Votes</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><input id="n" name="contractor1" ng-model="donation.contractor1" type="checkbox"></td>
+                                <td class="mdl-data-table__cell--non-numeric">Local Infrastructure Company</td>
+                                <td>£230000</td>
+                                <td>0</td>
+                            </tr>
+                            <tr>
+                                <td><input id="j" name="contractor2" ng-model="donation.contractor2" type="checkbox"></td>
+                                <td class="mdl-data-table__cell--non-numeric">Vintage Water Pipes</td>
+                                <td>£190000</td>
+                                <td>0</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    
+                
+                    <div  style="display: block; width: 100%;" class="mdl-textfield mdl-js-textfield">
+                        £<input style="display: inline-block;width: 135px;" class="mdl-textfield__input" type="text" id="d" pattern="-?[0-9]*(\.[0-9]+)?" ng-model="donation.amount">
                         <label style="padding-left: 15px;" class="mdl-textfield__label" for="d">I want to donate</label>
                     </div>
-                    <input type="submit" ng-click="donate(amount)" value="Donate" class="mdl-button mdl-js-button mdl-button--raised"/>
+                    <input type="submit" ng-click="donate(donation)" value="Donate" class="mdl-button mdl-js-button mdl-button--raised"/>
                 </form>
             </div>
+
+            
         </div>
         
     </div>
     <script>
         if(!(typeof(componentHandler) == 'undefined')){
             componentHandler.upgradeAllRegistered();
+        }
+
+        function initChart(totalPledged, contractors) {
+            var labels = [];
+            var series = [[]];
+            for (var i = 1; i <= contractors.length; i++) {
+                labels.push("C" + i);
+                series[0]
+            }
+            new Chartist.Bar('.ct-chart', {
+                labels: labels,
+                series: [
+                    [800000, 1200000, 1400000, 1300000], // con 1, con 2, con 3, con 4 (specificFundsPledged)
+                    [200000, 400000, 500000, 300000]     // con 1, con 2, con 3, con 4 (price - specificFundsPledged)
+                    
+                ]
+            }, {
+                stackBars: true,
+                axisY: {
+                    labelInterpolationFnc: function(value) {
+                    return (value / 1000) + 'k';
+                    }
+                }
+            }).on('draw', function(data) {
+                if(data.type === 'bar') {
+                    data.element.attr({
+                        style: 'stroke-width: 30px'
+                    });
+                }
+            });
         }
     </script>
 </div>

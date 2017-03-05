@@ -48,6 +48,7 @@ function ViewCauseController($scope, $http, $routeParams, $window) {
     $http.get('/api/causes/find/' + $routeParams.id)
         .success(function(cause) {
             $scope.cause = cause;
+            initChart(cause.currentFundsTotal, cause.contractors);
         })
         .error(function(error) {
             console.log(error);
@@ -56,7 +57,11 @@ function ViewCauseController($scope, $http, $routeParams, $window) {
     $scope.normalUser = window.localStorage.getItem("user") != undefined &&
         JSON.parse(window.localStorage.getItem("user")).type == "normal";
 
-    $scope.donate = function(amount) {
+    $scope.donate = function(donation) {
+        console.log(donation);
+        return;
+        var amount = donation.amount;
+        var contractor = donation.contractor;
         console.log('/api/pledge/' + amount + '/' + $scope.cause._id);
         $http.get('/api/pledge/' + amount + '/' + $scope.cause._id)
             .success(function(cause) {

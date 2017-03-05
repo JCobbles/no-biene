@@ -55,7 +55,11 @@ app.get('/populate', function(req, res) {
         description: "Mauris sed maximus est. Curabitur placerat pulvinar nibh, vel consequat risus ultricies a. Praesent pharetra semper tincidunt. Donec in mattis quam. Nam aliquet tellus a tortor sodales, ut accumsan metus posuere. Quisque vestibulum lacus in neque pretium rutrum.",
         details : "Aliquam blandit, felis quis tempus commodo, diam nulla fringilla turpis, quis lobortis arcu mauris non quam. Morbi id ligula non lacus sagittis luctus. In luctus nisl massa, non sollicitudin sapien fringilla in. Duis sodales aliquet nibh a accumsan. Proin convallis nec ante facilisis dignissim. Integer commodo orci sit amet felis sagittis, vitae commodo purus pulvinar. Cras congue porta fringilla. Aliquam et elit felis.",
         date : new Date(),
-        latitude: 39.986732, longitude: 34.814906
+        latitude: 39.986732, longitude: 34.814906,
+        contractors: [ 
+            { name: "Local Infrastructure Company", price: 230000, details: "We will infrastructure your infrastructure." },
+            { name: "Vintage Water Pipes", price: 190000, details: "We will reuse existing infrastructure to build a wobbly structure." } 
+        ]
     }, function(err, cause) {console.log(err);});
     Cause.create({
         title: "Fund the repair of local hospital",
@@ -65,14 +69,14 @@ app.get('/populate', function(req, res) {
         latitude: 39.716732, longitude: 33.914906
     }, function(err, cause) {console.log(err);});
     Cause.create({
-        title: "",
+        title: "Malaria medication needed",
         description: "Aenean ullamcorper vestibulum tortor. Duis ornare vitae justo sed semper. Ut est sapien, interdum ornare urna nec, posuere elementum nunc. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae.",
         details : "Cras iaculis mi eget pharetra mollis. Vivamus vestibulum purus libero, ut sodales justo feugiat at. Vestibulum sed maximus est, ac pellentesque augue. Mauris iaculis dignissim consectetur. Mauris gravida eget neque ac condimentum. Maecenas sodales ipsum tortor, vitae lobortis diam gravida ut. Sed ipsum justo, vehicula vitae ullamcorper id, tempor ut dolor. Integer ac risus ligula. In dictum urna nibh, cursus cursus ante tristique id. Sed lobortis mauris id ante venenatis lacinia. Proin suscipit purus ut quam mollis, eu tincidunt velit consequat.",
         date : new Date(),
         latitude: 39.816732, longitude: 31.814906
     }, function(err, cause) {console.log(err);});
     Cause.create({
-        title: "Food packages needed urgently in ",
+        title: "Food packages needed urgently",
         description: "Aenean ullamcorper vestibulum tortor. Duis ornare vitae justo sed semper. Ut est sapien, interdum ornare urna nec, posuere elementum nunc. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae.",
         details : "Cras iaculis mi eget pharetra mollis. Vivamus vestibulum purus libero, ut sodales justo feugiat at. Vestibulum sed maximus est, ac pellentesque augue. Mauris iaculis dignissim consectetur. Mauris gravida eget neque ac condimentum. Maecenas sodales ipsum tortor, vitae lobortis diam gravida ut. Sed ipsum justo, vehicula vitae ullamcorper id, tempor ut dolor. Integer ac risus ligula. In dictum urna nibh, cursus cursus ante tristique id. Sed lobortis mauris id ante venenatis lacinia. Proin suscipit purus ut quam mollis, eu tincidunt velit consequat.",
         date : new Date(),
@@ -83,7 +87,7 @@ app.get('/populate', function(req, res) {
         description: "Aenean ullamcorper vestibulum tortor. Duis ornare vitae justo sed semper. Ut est sapien, interdum ornare urna nec, posuere elementum nunc. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae.",
         details : "Cras iaculis mi eget pharetra mollis. Vivamus vestibulum purus libero, ut sodales justo feugiat at. Vestibulum sed maximus est, ac pellentesque augue. Mauris iaculis dignissim consectetur. Mauris gravida eget neque ac condimentum. Maecenas sodales ipsum tortor, vitae lobortis diam gravida ut. Sed ipsum justo, vehicula vitae ullamcorper id, tempor ut dolor. Integer ac risus ligula. In dictum urna nibh, cursus cursus ante tristique id. Sed lobortis mauris id ante venenatis lacinia. Proin suscipit purus ut quam mollis, eu tincidunt velit consequat.",
         date : new Date(),
-        latitude: 32.676947, longitude: 44.948068
+        latitude: 32.676947, longitude: 44.948068,
     }, function(err, cause) {console.log(err);});
     Cause.create({
         title: "Support needed for 10 child refugees",
@@ -92,7 +96,6 @@ app.get('/populate', function(req, res) {
         details : "Cras iaculis mi eget pharetra mollis. Vivamus vestibulum purus libero, ut sodales justo feugiat at. Vestibulum sed maximus est, ac pellentesque augue. Mauris iaculis dignissim consectetur. Mauris gravida eget neque ac condimentum. Maecenas sodales ipsum tortor, vitae lobortis diam gravida ut. Sed ipsum justo, vehicula vitae ullamcorper id, tempor ut dolor. Integer ac risus ligula. In dictum urna nibh, cursus cursus ante tristique id. Sed lobortis mauris id ante venenatis lacinia. Proin suscipit purus ut quam mollis, eu tincidunt velit consequat.",
         date : new Date(),
         latitude: 48.359093, longitude: 10.904820,
-        contractors: [ { name: "Local Infrastructure Company", price: 1000, details: "We will infrastructure your infrastructure." } ]
     }, function(err, cause) {console.log(err);});
     // 34.374669, longitude: 42.867019
     // {lat: 35.069766, lng: 52.893061}, // near tehran
