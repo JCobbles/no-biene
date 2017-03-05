@@ -93,7 +93,10 @@
 
         // Create an array of alphabetical characters used to label the markers.
         if (!populated) {
-            populateMap(google);
+            setTimeout(function() {
+                populateMap(google);
+            }, 1000);
+            
         }
     }
 
