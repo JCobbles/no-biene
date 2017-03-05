@@ -10,7 +10,7 @@ var methodOverride = require('method-override');   // simulate DELETE and PUT (e
 
 var productionServer = 'mongodb://tester:password@nobuene-886.mongo.dbs.appsdeck.eu:31179/nobuene-886'
 var localServer = 'mongodb://localhost:27017/myproject';
-mongoose.connect(localServer);
+mongoose.connect(productionServer);
 
 app.use(express.static(__dirname + '/public'));
 app.use(morgan('dev'));

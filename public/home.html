@@ -12,18 +12,21 @@
   .demo-card-wide > .mdl-card__menu {
       color: #fff;
   }
+  .cause:first-of-type {
+      padding-top: 15px;
+  }
 
 </style>
 
 <div ng-controller="HomepageController" class="container">
 
-    <h2>Transparent, Direct, Charity</h2>
+    <h2>Pairing funded solutions directly to local causes</h2>
 
     <div id="todo-list" class="row" >
         <div class="col-md-6" style= "overflow-y: scroll; max-height: 420px">
 
 
-            <div ng-repeat="cause in causes" >
+            <div ng-repeat="cause in causes" class="cause">
                 <a class="no-deco" href="#/view-cause/{{cause._id}}">
                     <div class="demo-card-wide mdl-card mdl-shadow--2dp">
                         <div class="mdl-card__title">
