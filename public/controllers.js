@@ -9,6 +9,7 @@ angular.module('myApp')
 HomepageController.$inject = ['$scope', '$http'];
 CauseCreationController.$inject = ['$scope', '$http', '$location'];
 LogoutController.$inject = ['$scope', '$http', '$window'];
+ViewCauseController.$inject = ['$scope', '$http', '$routeParams', '$window'];
 
 function HomepageController($scope, $http) {
     $scope.formData = {};
@@ -35,7 +36,7 @@ function CauseCreationController($scope, $http, $location) {
     };
 }
 
-function ViewCauseController($scope, $http, $routeParams) {
+function ViewCauseController($scope, $http, $routeParams, $window) {
     $scope.loggedIn = window.localStorage.getItem("user") !== undefined && window.localStorage.getItem("user") !== null
 
     $http.get('/api/causes/find/' + $routeParams.id)
@@ -55,6 +56,7 @@ function ViewCauseController($scope, $http, $routeParams) {
             .success(function(cause) {
                 console.log(cause);
                 $scope.cause = cause;
+                $window.location.reload();
             })
             .error(function(error) {
                 console.log(error);
