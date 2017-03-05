@@ -37,13 +37,14 @@
                             {{ cause.description }}
                         </div>
                         <div class="mdl-card__actions mdl-card--border">
-                            <a href="#/view-cause/{{cause._id}}" class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">
+                            <div style="float:left;width:45%;"><a href="#/view-cause/{{cause._id}}" class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">
                                 More information
-                            </a>
+                            </a> </div> 
+                            <div style="float:right;width:45%;"><p class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect" disabled>Raised so far: £{{cause.currentFundsTotal}}</p></div>
+                        
                         </div>
                         
-                        <div align="right"><b>Raised so far: £{{cause.currentFundsTotal}}</b>
-                        </div>
+                        
                         
                     </div>
             </div>
